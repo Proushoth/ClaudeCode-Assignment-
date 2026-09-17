@@ -1,0 +1,21 @@
+{
+  "name": "taskapi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.5",
+    "jest": "^30.5.1",
+    "supertest": "^7.2.2"
+  }
+}
