@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1789623392079" clover="3.2.0">
-  <project timestamp="1789623392079" name="All files">
+<coverage generated="1789626063583" clover="3.2.0">
+  <project timestamp="1789626063584" name="All files">
     <metrics statements="40" coveredstatements="40" conditionals="21" coveredconditionals="20" methods="5" coveredmethods="5" elements="66" coveredelements="65" complexity="0" loc="40" ncloc="40" packages="1" files="2" classes="2"/>
     <file name="app.js" path="/Users/proushothkoushal/dev/TaskAPI/src/app.js">
       <metrics statements="24" coveredstatements="24" conditionals="5" coveredconditionals="5" methods="4" coveredmethods="4"/>
