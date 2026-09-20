@@ -1,0 +1,39 @@
+# Code Review Report: src/app.js
+
+Target: src/app.js
+Date: 2026-09-20
+
+## 1. Lint findings
+Command: `npx eslint src/app.js`
+
+✅ No lint issues.
+
+## 2. Test results
+Command: `npm test`
+
+PASS src/__tests__/app.test.js
+PASS tests/validators.test.js
+
+Test Suites: 2 passed, 2 total
+Tests:       24 passed, 24 total
+Snapshots:   0 total
+Time:        0.307 s
+Ran all test suites.
+
+✅ All tests pass.
+
+## 3. AGENTS.md rule violations
+Checking `src/app.js` against repository rules in AGENTS.md:
+
+- [x] Indentation: 2 spaces (verified)
+- [x] Quotes: single quotes for strings (verified)
+- [x] Strict mode: starts with `'use strict';` (verified)
+- [x] Module system: CommonJS (`require` / `module.exports`) (verified)
+- [x] No default exports: uses `module.exports = { app }` (verified)
+- [x] Trailing commas on multi-line objects/arrays (verified)
+- [x] Semicolons used consistently (verified)
+- [x] Max line length: <= 100 characters (verified)
+- [x] Testing: Every route (`GET /tasks`, `POST /tasks`, `DELETE /tasks/:id`) has corresponding integration tests in `src/__tests__/app.test.js` (verified)
+- [x] In-memory storage: no DB introduced (verified)
+
+✅ No rule violations found.

@@ -1,7 +1,9 @@
 node_modules/
 
-
 .env
 
 # Claude Code personal overrides — machine-specific, not for shared history
 .claude/settings.local.json
+
+# Test coverage generated files
+coverage/

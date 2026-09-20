@@ -26,57 +26,37 @@ The shared, team-wide rules live in `.claude/settings.json` (committed) and `AGE
 
 ## 2. What did `/review` report?
 
-The `/review` command runs `npm run lint`, `npm test`, and checks the code against the
-rules in `AGENTS.md`. Running it after all six tasks were completed produced the
-following findings:
+The `/review` command runs `npm run lint $ARGUMENTS`, `npm test`, checks the code against
+the rules in `AGENTS.md`, and saves the report to `review-output.txt`.
+
+Running `/review src/app.js` produced the following findings (saved to `review-output.txt`):
 
 ### Lint findings
+Running ESLint on `src/app.js`:
+- **✅ No lint issues.**
 
-When first run against the full project, ESLint reported **26 errors** in
-`tests/validators.test.js`:
-
-```
-tests/validators.test.js
-   5:1  error  'describe' is not defined  no-undef
-   7:3  error  'it' is not defined        no-undef
-   9:5  error  'expect' is not defined    no-undef
-   ...
-✖ 26 problems (26 errors, 0 warnings)
-```
-
-**Root cause:** The Jest globals override in `eslint.config.js` only covered
-`src/__tests__/**/*.test.js` and missed the `tests/` directory at the project root
-where the unit tests live.
-
-**Fix applied:** Expanded the `files` glob to include both directories:
-
-```js
-files: ['src/__tests__/**/*.test.js', 'tests/**/*.test.js'],
-```
-
-After the fix, lint passed cleanly: **✅ No lint issues.**
+*(Earlier during full-project checks, 26 lint errors were caught in `tests/validators.test.js` because `tests/` was missing Jest globals in `eslint.config.js`. That was resolved by expanding the glob).*
 
 ### Test results
-
 ```
 PASS src/__tests__/app.test.js
 PASS tests/validators.test.js
 
 Test Suites: 2 passed, 2 total
-Tests:       20 passed, 20 total
+Tests:       24 passed, 24 total
 ```
 
-✅ All 20 tests passed.
+✅ All 24 tests passed.
 
 ### AGENTS.md rule violations
+Checked `src/app.js` against all rules in `AGENTS.md`:
+- ✅ 2-space indentation and semicolons
+- ✅ Single quotes and `'use strict';`
+- ✅ CommonJS named exports (`module.exports = { app }`)
+- ✅ All routes (`GET /tasks`, `POST /tasks`, `DELETE /tasks/:id`) have tests in `src/__tests__/app.test.js`
+- ✅ All lines <= 100 characters
 
-No violations found against `AGENTS.md` rules:
-
-- ✅ Every route (`GET /tasks`, `POST /tasks`, `DELETE /tasks/:id`) has tests.
-- ✅ All files use `'use strict'` and single quotes.
-- ✅ No default exports — all modules use `module.exports = { ... }`.
-- ✅ No secrets committed to Git.
-- ✅ `package-lock.json` was not edited by hand.
+**Result:** ✅ No rule violations found. All results saved to `review-output.txt`.
 
 ---
 

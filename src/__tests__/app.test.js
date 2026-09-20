@@ -1,7 +1,7 @@
 'use strict';
 
 const request = require('supertest');
-const app = require('../app');
+const { app } = require('../app');
 
 describe('GET /tasks', () => {
   it('returns 200 and an empty array initially', async () => {

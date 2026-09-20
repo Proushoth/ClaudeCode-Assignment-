@@ -59,4 +59,4 @@ app.delete('/tasks/:id', (req, res) => {
   res.status(204).send();
 });
 
-module.exports = app;
+module.exports = { app };
