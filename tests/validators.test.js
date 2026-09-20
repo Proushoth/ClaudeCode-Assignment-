@@ -64,4 +64,25 @@ describe('validateTask', () => {
     const result = validateTask({ title: 'A'.repeat(100) });
     expect(result.error).toBeUndefined();
   });
+
+  // 10. Non-string description returns error
+  it('returns an error when description is not a string', () => {
+    const result = validateTask({ title: 'Valid title', description: 42 });
+    expect(result.error).toBeDefined();
+    expect(result.error).toMatch(/description must be a string/i);
+  });
+
+  // 11. Valid description is trimmed and stored
+  it('trims whitespace from valid description', () => {
+    const result = validateTask({ title: 'Valid title', description: '  some note  ' });
+    expect(result.error).toBeUndefined();
+    expect(result.value.description).toBe('some note');
+  });
+
+  // 12. Missing description defaults to empty string
+  it('defaults description to empty string when omitted', () => {
+    const result = validateTask({ title: 'Valid title' });
+    expect(result.error).toBeUndefined();
+    expect(result.value.description).toBe('');
+  });
 });

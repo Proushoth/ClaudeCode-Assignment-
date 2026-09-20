@@ -11,7 +11,7 @@ const VALID_PRIORITIES = ['low', 'medium', 'high'];
  * @returns {{ value?: object, error?: string }}
  */
 function validateTask(input) {
-  const { title, priority } = input || {};
+  const { title, priority, description } = input || {};
 
   // --- title ---
   if (title === undefined || title === null) {
@@ -32,6 +32,15 @@ function validateTask(input) {
     return { error: 'title must be at most 100 characters long.' };
   }
 
+  // --- description ---
+  let resolvedDescription = '';
+  if (description !== undefined && description !== null) {
+    if (typeof description !== 'string') {
+      return { error: 'description must be a string.' };
+    }
+    resolvedDescription = description.trim();
+  }
+
   // --- priority ---
   const resolvedPriority = priority === undefined ? 'medium' : priority;
 
@@ -45,6 +54,7 @@ function validateTask(input) {
     value: {
       title: trimmedTitle,
       priority: resolvedPriority,
+      description: resolvedDescription,
     },
   };
 }

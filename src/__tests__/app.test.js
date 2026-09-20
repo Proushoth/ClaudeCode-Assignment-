@@ -52,6 +52,15 @@ describe('POST /tasks', () => {
     expect(res.statusCode).toBe(400);
     expect(res.body).toHaveProperty('error');
   });
+
+  it('returns 400 when description is not a string', async () => {
+    const res = await request(app)
+      .post('/tasks')
+      .send({ title: 'Valid title', description: 42 });
+    expect(res.statusCode).toBe(400);
+    expect(res.body).toHaveProperty('error');
+    expect(res.body.error).toMatch(/description must be a string/i);
+  });
 });
 
 describe('GET /tasks after inserts', () => {
