@@ -24,8 +24,8 @@ module.exports = [
     },
   },
   {
-    // Test files get Jest globals
-    files: ['src/__tests__/**/*.test.js'],
+    // Test files get Jest globals (both src/__tests__/ and tests/)
+    files: ['src/__tests__/**/*.test.js', 'tests/**/*.test.js'],
     languageOptions: {
       globals: {
         describe: 'readonly',
