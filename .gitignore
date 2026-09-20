@@ -1,8 +1,9 @@
 node_modules/
-package-lock.json
 
-# Secrets — never commit
 .env
 
 # Claude Code personal overrides — machine-specific, not for shared history
 .claude/settings.local.json
+
+# Test coverage generated files
+coverage/

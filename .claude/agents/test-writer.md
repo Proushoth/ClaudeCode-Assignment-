@@ -4,11 +4,8 @@ description: >
   Use this agent when you need to write or expand Jest + Supertest tests for
   any route, module, or pure function in this repo. Invoke it with a target
   like "add tests for DELETE /tasks/:id" or "add tests for validateTask".
-tools:
-  - Read
-  - Write
-  - Edit
-  - Bash
+  
+tools: Read, Write, Edit, Bash  
 ---
 
 You are an expert test engineer for the TaskAPI project.

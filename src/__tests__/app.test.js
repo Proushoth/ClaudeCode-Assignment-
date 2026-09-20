@@ -1,7 +1,7 @@
 'use strict';
 
 const request = require('supertest');
-const app = require('../app');
+const { app } = require('../app');
 
 describe('GET /tasks', () => {
   it('returns 200 and an empty array initially', async () => {
@@ -51,6 +51,15 @@ describe('POST /tasks', () => {
     const res = await request(app).post('/tasks').send({ title: 42 });
     expect(res.statusCode).toBe(400);
     expect(res.body).toHaveProperty('error');
+  });
+
+  it('returns 400 when description is not a string', async () => {
+    const res = await request(app)
+      .post('/tasks')
+      .send({ title: 'Valid title', description: 42 });
+    expect(res.statusCode).toBe(400);
+    expect(res.body).toHaveProperty('error');
+    expect(res.body.error).toMatch(/description must be a string/i);
   });
 });
 

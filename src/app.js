@@ -25,8 +25,6 @@ app.get('/tasks', (req, res) => {
  * Body: { title: string, description?: string, priority?: 'low'|'medium'|'high' }
  */
 app.post('/tasks', (req, res) => {
-  const { description = '' } = req.body;
-
   const { value, error } = validateTask(req.body);
   if (error) {
     return res.status(400).json({ error });
@@ -36,7 +34,7 @@ app.post('/tasks', (req, res) => {
     id: nextId++,
     title: value.title,
     priority: value.priority,
-    description: description.trim(),
+    description: value.description,
     createdAt: new Date().toISOString(),
   };
 
@@ -61,4 +59,4 @@ app.delete('/tasks/:id', (req, res) => {
   res.status(204).send();
 });
 
-module.exports = app;
+module.exports = { app };
