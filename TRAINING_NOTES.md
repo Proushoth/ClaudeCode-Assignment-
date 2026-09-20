@@ -18,6 +18,7 @@ Because its contents are **machine-specific and potentially sensitive**, it must
 shared via version control. Committing it would either expose personal configuration to
 the whole team or cause conflicts when two developers have different local settings.
 
+
 The shared, team-wide rules live in `.claude/settings.json` (committed) and `AGENTS.md`
 (committed). `settings.local.json` layers on top of those, privately.
 
